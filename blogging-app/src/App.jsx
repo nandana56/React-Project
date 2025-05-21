@@ -6,6 +6,8 @@ import Signup from "./components/user/Signup"
 import Login from './components/user/Login';
 import ForgetPassword from "./components/user/ForgetPassword"
 import ResetPassword from "./components/user/ResetPassword"
+
+import ChangePassword from './components/user/ChangePassword';
 import ResetSuccess from "./components/user/ResetSuccess"
 import AdminLogin from './components/admin/AdminLogin';
 import AdminDashboard from './components/admin/AdminDashboard';
@@ -46,13 +48,15 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login/>} />
-        <Route path="/user-forgetpassword" element={<ForgetPassword/>} />
-        <Route path="/user-resetpassword" element={<ResetPassword/>} />
+        <Route path="/forgetpassword" element={<ForgetPassword/>} />
+        <Route path="/resetpassword" element={<ResetPassword/>} />
+
+         <Route path="/user-changepassword" element={<ChangePassword/>} />
         <Route path="/user-resetsuccess" element={<ResetSuccess/>} />
         
        
         
-        <Route path="/admin-login" element={<AdminLogin/>} />
+        <Route path="/loginadmin" element={<AdminLogin/>} />
         <Route path="/admin-dashboard" element={<AdminDashboard/>} />
         <Route path="/user-editprofile" element={<EditProfile/>} />
         <Route path="/admin-viewallusers" element={<ViewAllUsers/>} />
@@ -67,11 +71,12 @@ function App() {
 
         <Route path="/userlogout" element={<UserLogout />} />
         <Route path="/user-profile" element={<UserProfile />} />
-        <Route path="/user-addblog" element={<AddBlog/>} />
-        <Route path="/user-viewoneblog" element={<UserViewOneBlog/>} />
-        <Route path="/admin-viewoneblog" element={<AdminViewOneBlog/>} />
+       <Route path="/user-addblog/:id" element={<AddBlog />} />
 
-        <Route path="/user-editblog" element={<EditBlog/>} />
+        <Route path="/user-viewoneblog/:id" element={<UserViewOneBlog/>} />
+        <Route path="/admin-viewoneblog/:id" element={<AdminViewOneBlog/>} />
+
+        <Route path="/user-editblog/:id" element={<EditBlog/>} />
         <Route path="/viewblogs" element={<ViewBlogs/>} />
 
 

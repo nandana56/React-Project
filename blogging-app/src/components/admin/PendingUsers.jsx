@@ -7,10 +7,10 @@ const PendingUsers = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Fetch all users with approval status as false
+ 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/Blog/ViewPendingUsers") // Assuming this is the endpoint to fetch pending users
+      .get("http://localhost:3002/Blog/ViewPendingUsers") 
       .then((response) => {
         setPendingUsers(response.data.data);
       })
@@ -24,7 +24,7 @@ const PendingUsers = () => {
     axios
       .put(`http://localhost:3002/Blog/ApproveUser/${userId}`)
       .then(() => {
-        // On success, remove the approved user from the list
+        
         setPendingUsers(pendingUsers.filter((user) => user._id !== userId));
       })
       .catch((err) => {

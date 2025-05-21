@@ -6,6 +6,7 @@ import blogicon from "../../assets/blog1.jpg";
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,9 +16,8 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Detect pages
   const isAdminPage = location.pathname.startsWith("/admin");
-  const isUserLoggedInPage = location.pathname.startsWith("/user"); // user pages like /userdashboard, /userprofile etc.
+  const isUserLoggedInPage = location.pathname.startsWith("/user");
 
   return (
     <nav className={`navbar navbar-expand-lg fixed-top ${scrolled ? "navbar-scrolled" : "bg-transparent shadow-sm"}`}>
@@ -30,20 +30,18 @@ const Navbar = () => {
         <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              
-            </li>
-            <li className="nav-item">
-              <Link className={`nav-link ${scrolled ? "text-white" : "text-dark"}`} to="viewblogs"><strong>VIEW ALL BLOGS</strong></Link>
+              <Link className={`nav-link ${scrolled ? "text-white" : "text-dark"}`} to="/viewblogs">
+                <strong>VIEW ALL BLOGS</strong>
+              </Link>
             </li>
           </ul>
         </div>
 
-        {/* Different buttons based on page */}
         <div className="d-flex gap-3">
           {isAdminPage ? (
             <>
               <Link
-                to="/admin-profile"
+                to="/admin-dashboard"
                 className={`btn ${scrolled ? "btn-outline-light" : "btn-outline-dark"}`}
               >
                 Profile
@@ -57,12 +55,21 @@ const Navbar = () => {
             </>
           ) : isUserLoggedInPage ? (
             <>
-              <Link
-                to="/user-addblog"
-                className={`btn ${scrolled ? "btn-outline-light" : "btn-outline-dark"}`}
-              >
-                Create Blog
-              </Link>
+              {userId ? (
+                <Link
+                  to={`/user-addblog/${userId}`}
+                  className={`btn ${scrolled ? "btn-outline-light" : "btn-outline-dark"}`}
+                >
+                  Create Blog
+                </Link>
+              ) : (
+                <Link
+                  to="/login"
+                  className={`btn ${scrolled ? "btn-outline-light" : "btn-outline-dark"}`}
+                >
+                  Create Blog
+                </Link>
+              )}
               <Link
                 to="/userlogout"
                 className={`btn ${scrolled ? "btn-light" : "btn-dark"} px-4`}

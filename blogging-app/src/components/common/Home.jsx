@@ -46,7 +46,7 @@ const Home = () => {
     
     </div>
     <div className="info-section d-flex align-items-center justify-content-between flex-wrap flex-lg-nowrap ">
-  {/* Image Side */}
+ 
   <div className="info-image">
     <img 
       src={whatisblog}
@@ -55,7 +55,6 @@ const Home = () => {
     />
   </div>
 
-  {/* Text Side */}
   <div className="info-text">
     <h2>Share Your Stories Freely</h2>
     <p>

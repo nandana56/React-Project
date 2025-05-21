@@ -4,7 +4,7 @@ import axios from "axios";
 import './ForgetPassword.css';
 
 
-const ForgetPassword = () => {
+const ChangePassword = () => {
   const [data, setData] = useState({ Email: "", Password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ const ForgetPassword = () => {
           name="Email"
           value={data.Email}
           onChange={handleChange}
-          placeholder="Enter your email"
+          placeholder="example@example.com"
         />
       </div>
 
@@ -83,4 +83,4 @@ const ForgetPassword = () => {
   );
 };
 
-export default ForgetPassword;
+export default ChangePassword;

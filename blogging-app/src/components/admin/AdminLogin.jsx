@@ -23,8 +23,11 @@ const AdminLogin = () => {
     const storedPassword = localStorage.getItem("adminPassword");
 
     if (username === storedUsername && password === storedPassword) {
-  localStorage.setItem("isAdminLoggedIn", "true"); // ✅ Set login flag
-  navigate("/admin-dashboard");  // ✅ Then navigate
+  localStorage.setItem("isAdminLoggedIn", "true"); 
+  navigate("/admin-dashboard");  
+}
+else {
+  setError("Invalid username or password");
 }
 
   };

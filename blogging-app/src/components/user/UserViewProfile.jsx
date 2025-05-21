@@ -13,14 +13,14 @@ const UserViewProfile = () => {
   const [blogs, setBlogs] = useState([]);
   const menuRef = useRef();
 
-  // Redirect if no userId
+  
   useEffect(() => {
     if (!userId) {
       navigate('/login');
     }
   }, [userId, navigate]);
 
-  // Fetch user data
+  
   useEffect(() => {
     if (userId) {
       axios
@@ -39,7 +39,7 @@ const UserViewProfile = () => {
     }
   }, [userId]);
 
-  // Fetch all blogs and filter user's blogs
+  
   useEffect(() => {
     axios
       .post('http://localhost:3002/Blog/ViewBlog')
@@ -57,7 +57,7 @@ const UserViewProfile = () => {
       });
   }, [userId]);
 
-  // Close dropdown on outside click
+  
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -83,7 +83,7 @@ const UserViewProfile = () => {
         <Link to="/user-profile" state={{ userId }}>👁️ Profile</Link>
         <Link to="/userviewprofile" state={{ userId }}>📝 View My Blogs</Link>
         <Link to="/user-editprofile" state={{ userId }}>⚙️ Edit Profile</Link>
-        <Link to="/user-resetpassword" state={{ userId }}>🔑 Change Password</Link>
+        <Link to="/user-changepassword" state={{ userId }}>🔑 Change Password</Link>
       </div>
     )}
   </div>
@@ -112,12 +112,13 @@ const UserViewProfile = () => {
               <h6 className="card-subtitle text-muted mb-2">{blog.SubTitle}</h6>
               <p className="card-text">{blog.Discription?.slice(0, 100)}...</p>
               <Link
-                to="/user-viewoneblog"
-                state={{ blog }}
-                className="btn btn-sm btn-primary"
-              >
-                📖 Read More
-              </Link>
+  to={`/user-viewoneblog/${blog._id}`}
+  state={{ blog }}
+  className="btn btn-sm btn-primary"
+>
+  📖 Read More
+</Link>
+
             </div>
             <div className="card-footer user-blog-footer">
               ✍️ By: {blog.UserId?.Name || "Unknown"}

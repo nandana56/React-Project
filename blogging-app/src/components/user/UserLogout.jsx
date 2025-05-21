@@ -9,7 +9,7 @@ const UserLogout = () => {
     navigate('/login', { replace: true });
   }, [navigate]);
 
-  return null; // or loading spinner/message
+  return null; 
 };
 
 export default UserLogout;

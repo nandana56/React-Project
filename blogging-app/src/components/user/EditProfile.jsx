@@ -24,7 +24,7 @@ const EditProfile = () => {
             Name: user.Name,
             Email: user.Email,
             PhoneNo: user.PhoneNo,
-            DOB: user.DOB?.split('T')[0], // YYYY-MM-DD format
+            DOB: user.DOB?.split('T')[0], 
           });
         })
         .catch((error) => {
@@ -44,6 +44,11 @@ const EditProfile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const phoneRegex = /^\d{10}$/;
+  if (!phoneRegex.test(formData.PhoneNo)) {
+    alert("Please enter a valid 10-digit phone number.");
+    return;
+  }
   
     axios.post(`http://localhost:3002/Blog/EditUser/${userId}`, {
       Name: formData.Name,

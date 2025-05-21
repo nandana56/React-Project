@@ -7,7 +7,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isAdminLoggedIn");
     if (!isLoggedIn) {
-      navigate("/admin-login");
+      navigate("/loginadmin");
     }
   }, [navigate]);
 

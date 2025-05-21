@@ -15,14 +15,14 @@ const EditBlog = () => {
   useEffect(() => {
     const loggedInUserId = localStorage.getItem('userId');
 
-    // If blog is missing or user is not authorized, redirect
+    
     if (!blog || loggedInUserId !== blog?.UserId?._id) {
       alert('⛔ Unauthorized access to edit blog.');
       navigate('/userviewprofile');
       return;
     }
 
-    // Set blog data if authorized
+   
     setTitle(blog.Title);
     setSubTitle(blog.SubTitle);
     setDiscription(blog.Discription);

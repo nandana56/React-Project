@@ -24,14 +24,12 @@ const ViewOneUser = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this user?");
     if (!confirmDelete) return;
 
-    DeleteUser(id) // ✅ call DeleteUser with capital D
-      .then(() => {
-        alert("User deleted successfully!");
-        navigate("/admin-viewallusers");
-      })
-      .catch(() => {
-        alert("Failed to delete user.");
-      });
+    DeleteUser(id)
+  .then((data) => {
+    alert(data.message);  
+    navigate("/admin-viewallusers");
+  })
+
   };
 
   if (!user) return <p>Loading user...</p>;

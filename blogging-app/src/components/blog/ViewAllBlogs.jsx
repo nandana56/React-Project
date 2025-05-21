@@ -44,13 +44,10 @@ const ViewAllBlogs = () => {
                 <p className="viewblogs-description">
                   {blog.Discription?.slice(0, 100)}...
                 </p>
-                <Link
-                  to="/admin-viewoneblog"
-                  state={{ blog }}
-                  className="viewblogs-btn"
-                >
-                  📖 Read More
-                </Link>
+                <Link to={`/admin-viewoneblog/${blog._id}`} state={{ blog }} className="viewblogs-btn">
+  📖 Read More
+</Link>
+
               </div>
               <div className="viewblogs-footer">
                 ✍️ By: {blog.UserId?.Name || 'Unknown'}

@@ -25,14 +25,18 @@ const Signup = () => {
     let errors = {};
     const emailRegex = /^\S+@\S+\.\S+$/;
     const phoneRegex = /^[0-9]{10}$/;
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
 
     if (!formData.Name.trim()) errors.name = "Name is required.";
-    if (!emailRegex.test(formData.Email)) errors.email = "Invalid email format.";
-    if (!phoneRegex.test(formData.PhoneNo)) errors.phoneNo = "Phone number must be 10 digits.";
+    if (!emailRegex.test(formData.Email))
+      errors.email = "Invalid email format.";
+    if (!phoneRegex.test(formData.PhoneNo))
+      errors.phoneNo = "Phone number must be 10 digits.";
     if (!formData.DOB) errors.dob = "Date of Birth is required.";
     if (!passwordRegex.test(formData.Password))
-      errors.password = "Password must have 8+ characters, 1 uppercase, 1 number, and 1 special character.";
+      errors.password =
+        "Password must have 8+ characters, 1 uppercase, 1 number, and 1 special character.";
 
     setErrors(errors);
     return Object.keys(errors).length === 0;
@@ -45,15 +49,15 @@ const Signup = () => {
     if (validateForm()) {
       const preparedData = {
         ...formData,
-        PhoneNo: Number(formData.PhoneNo), // Convert PhoneNo to Number for backend
+        PhoneNo: Number(formData.PhoneNo), 
       };
 
       axios
         .post("http://localhost:3002/Blog/UserRegistration", preparedData)
         .then((response) => {
-          console.log(response);
-          setSuccessMessage("Registration Successful!");
-          alert("Registration Successful!");
+          setSuccessMessage(response.data.message);
+          alert(response.data.message); 
+          navigate("/login");
 
           setFormData({
             Name: "",
@@ -78,21 +82,26 @@ const Signup = () => {
       <div className="col-md-6 p-4 shadow-lg bg-white rounded">
         <h2 className="text-center mb-4">Sign Up</h2>
 
-        {successMessage && <div className="alert alert-success">{successMessage}</div>}
+        {successMessage && (
+          <div className="alert alert-success">{successMessage}</div>
+        )}
 
         <form onSubmit={handleSubmit}>
-
           <div className="mb-3">
             <label className="form-label">Name</label>
             <input
               type="text"
               name="Name"
-              className={`form-control ${isSubmitted && errors.name ? "is-invalid" : ""}`}
+              className={`form-control ${
+                isSubmitted && errors.name ? "is-invalid" : ""
+              }`}
               onChange={handleChange}
               value={formData.Name}
               placeholder="Enter your name"
             />
-            {isSubmitted && errors.name && <div className="invalid-feedback">{errors.name}</div>}
+            {isSubmitted && errors.name && (
+              <div className="invalid-feedback">{errors.name}</div>
+            )}
           </div>
 
           <div className="mb-3">
@@ -100,12 +109,16 @@ const Signup = () => {
             <input
               type="email"
               name="Email"
-              className={`form-control ${isSubmitted && errors.email ? "is-invalid" : ""}`}
+              className={`form-control ${
+                isSubmitted && errors.email ? "is-invalid" : ""
+              }`}
               onChange={handleChange}
               value={formData.Email}
               placeholder="Enter your email"
             />
-            {isSubmitted && errors.email && <div className="invalid-feedback">{errors.email}</div>}
+            {isSubmitted && errors.email && (
+              <div className="invalid-feedback">{errors.email}</div>
+            )}
           </div>
 
           <div className="mb-3">
@@ -113,12 +126,16 @@ const Signup = () => {
             <input
               type="tel"
               name="PhoneNo"
-              className={`form-control ${isSubmitted && errors.phoneNo ? "is-invalid" : ""}`}
+              className={`form-control ${
+                isSubmitted && errors.phoneNo ? "is-invalid" : ""
+              }`}
               onChange={handleChange}
               value={formData.PhoneNo}
               placeholder="Enter 10-digit phone number"
             />
-            {isSubmitted && errors.phoneNo && <div className="invalid-feedback">{errors.phoneNo}</div>}
+            {isSubmitted && errors.phoneNo && (
+              <div className="invalid-feedback">{errors.phoneNo}</div>
+            )}
           </div>
 
           <div className="mb-3">
@@ -126,11 +143,15 @@ const Signup = () => {
             <input
               type="date"
               name="DOB"
-              className={`form-control ${isSubmitted && errors.dob ? "is-invalid" : ""}`}
+              className={`form-control ${
+                isSubmitted && errors.dob ? "is-invalid" : ""
+              }`}
               onChange={handleChange}
               value={formData.DOB}
             />
-            {isSubmitted && errors.dob && <div className="invalid-feedback">{errors.dob}</div>}
+            {isSubmitted && errors.dob && (
+              <div className="invalid-feedback">{errors.dob}</div>
+            )}
           </div>
 
           <div className="mb-3">
@@ -138,15 +159,21 @@ const Signup = () => {
             <input
               type="password"
               name="Password"
-              className={`form-control ${isSubmitted && errors.password ? "is-invalid" : ""}`}
+              className={`form-control ${
+                isSubmitted && errors.password ? "is-invalid" : ""
+              }`}
               onChange={handleChange}
               value={formData.Password}
               placeholder="Create a strong password"
             />
-            {isSubmitted && errors.password && <div className="invalid-feedback">{errors.password}</div>}
+            {isSubmitted && errors.password && (
+              <div className="invalid-feedback">{errors.password}</div>
+            )}
           </div>
 
-          <button type="submit" className="btn btn-primary w-100">Register</button>
+          <button type="submit" className="btn btn-primary w-100">
+            Register
+          </button>
         </form>
       </div>
     </div>

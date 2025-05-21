@@ -32,7 +32,7 @@ const Login = () => {
       return false;
     }
 
-    setError(""); // Clear previous errors
+    setError(""); 
     return true;
   };
 
@@ -60,7 +60,9 @@ const Login = () => {
 
           const redirectedBlog = location.state?.blog;
           if (redirectedBlog) {
-            navigate("/user-viewoneblog", { state: { blog: redirectedBlog } });
+            navigate(`/user-viewoneblog/${redirectedBlog._id}`, {
+              state: { blog: redirectedBlog },
+            });
           } else {
             navigate("/userviewprofile", { state: { userId: user._id } });
           }
@@ -76,7 +78,7 @@ const Login = () => {
 
   const handleResetClick = () => {
     setData({ Email: "", Password: "" });
-    navigate("/user-resetpassword");
+    navigate("/resetpassword");
   };
 
   return (
@@ -112,7 +114,7 @@ const Login = () => {
           </div>
 
           <div className="mb-3 text-end">
-            <Link to="/user-forgetpassword" className="login-link me-3">
+            <Link to="/forgetpassword" className="login-link me-3">
               Forgot Password?
             </Link>
           </div>

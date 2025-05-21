@@ -9,7 +9,7 @@ const ViewAllUsers = () => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3002/Blog/ViewAllUsers") // Backend filters only approved + active users
+      .post("http://localhost:3002/Blog/ViewAllUsers") 
       .then((response) => {
         const allUsers = response.data.data || [];
         const approvedUsers = allUsers.filter(user => user.approved === true && user.isActive === true);

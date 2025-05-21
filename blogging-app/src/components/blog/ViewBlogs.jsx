@@ -28,7 +28,8 @@ const ViewBlogs = () => {
       alert('You must be logged in to view the full blog!');
       navigate('/login', { state: { blog } }); // Pass blog in state to login page
     } else {
-      navigate('/user-viewoneblog', { state: { blog } });
+     navigate(`/user-viewoneblog/${blog._id}`, { state: { blog } });
+
     }
   };
 
@@ -53,7 +54,7 @@ const ViewBlogs = () => {
             <div className="viewblogs-card-body card-body">
               <h5 className="viewblogs-card-title">{blog.Title}</h5>
               <h6 className="viewblogs-card-subtitle card-subtitle">{blog.SubTitle}</h6>
-              <p className="card-text">{blog.Discription?.slice(0, 100)}...</p>
+              <p className="card-text" style={{ whiteSpace: 'pre-wrap' }}>{blog.Discription?.slice(0, 100)}...</p>
               <button
                 className="btn btn-sm btn-primary"
                 onClick={() => handleReadMore(blog)}
